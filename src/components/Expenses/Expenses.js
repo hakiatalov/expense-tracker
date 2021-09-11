@@ -9,7 +9,6 @@ import './Expenses.css';
 function Expenses(props) {
 
     const [filter, setFilter] = useState('2021');
-    console.log(filter);
 
     return ( 
         <div>
