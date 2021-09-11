@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import ExpenseItem from './ExpenseItem';
+import ExpensesList from './ExpensesList';
 import ExpensesFilter from './ExpensesFilter';
 import Card from '../UI/Card';
 
@@ -11,23 +11,14 @@ function Expenses(props) {
     const [filter, setFilter] = useState('All');
 
     const filteredExpenses = props.items.filter(element =>{
-        return filter == "All" ? true : element.date.getFullYear() == filter;
+        return filter === "All" ? true : element.date.getFullYear().toString() === filter;
     })
 
     return ( 
         <div>
             <Card className="expenses">
                 <ExpensesFilter filter={filter} setFilter={setFilter} />
-                {filteredExpenses.map((expense) => {
-                    return (
-                        <ExpenseItem 
-                            key={expense.id}
-                            title={expense.title}
-                            amount={expense.amount}
-                            date={expense.date}
-                            filter={filter} />
-                    )
-                })}
+                <ExpensesList items={filteredExpenses} /> 
             </Card>
         </div>
     );
